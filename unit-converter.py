@@ -16,9 +16,13 @@ def unit_conversion(value,from_unit, to_unit, category):
     elif from_unit == "Fahrenheit" and to_unit == "Celsius":
       return (value -32) * 5/9
     elif from_unit == "Celsius" and to_unit == "Kelvin":
-      return (value + 372.15)
+      return (value + 273.15)
     elif from_unit == "Kelvin" and to_unit == "Celsius":
-     return value
+      return (value - 273.15)
+    elif from_unit == "Fahrenheit" and to_unit == "Kelvin":
+      return (value -32)*5/9 +273.15
+    elif from_unit == "Kelvin" and to_unit == "Fahrenheit":
+      return (value -273.15) *9/5 +32 
   return value * conversion_factors[to_unit] / conversion_factors[from_unit]
 
 st.title("Unit Converter")
@@ -40,3 +44,7 @@ value = st.number_input("Enter value", min_value=0.0, format="%.4f")
 if st.button("Conversion"):
   result = unit_conversion(value, from_unit, to_unit, category)
   st.success(f"{value} {from_unit} = {result:.4f} {to_unit}")
+
+
+
+
